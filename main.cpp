@@ -14,6 +14,7 @@ struct Node {
 void output(Node *);
 void add(Node*, float v);
 void deletenode(Node*, float v);
+void insert(Node*, int e);
 
 int main() {
     Node *head = nullptr; //means empty list
@@ -39,7 +40,7 @@ int main() {
     output(head); */
 
     // deleting a node
-    Node * current = head;
+    /*Node * current = head; //ptr current points to same thing as head
     cout << "Which node to delete? " << endl;
     output(head);
     int entry;
@@ -48,7 +49,7 @@ int main() {
 
     // traverse that many times and delete that node
     current = head;
-    Node *prev = head;
+    Node *prev = head; //prev points to same as head, which is also what current is pointing to
     for (int i = 0; i < (entry-1); i++)
         if (i == 0)
             current = current->next;
@@ -62,7 +63,7 @@ int main() {
         delete current;
         current = nullptr;
     }
-    output(head);
+    output(head);*/
 
     // insert a node
     current = head;
@@ -138,5 +139,32 @@ void output(Node* head, float value) {
     output(head);
 }
 void deletenode(Node* head, float value) {
+    // deleting a node
+    Node * current = head; //ptr current points to same thing as head
+    cout << "Which node to delete? " << endl;
+    output(head);
+    int entry;
+    cout << "Choice --> ";
+    cin >> entry;
+
+    // traverse that many times and delete that node
+    current = head;
+    Node *prev = head; //prev points to same as head, which is also what current is pointing to
+    for (int i = 0; i < (entry-1); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    // at this point, delete current and reroute pointers
+    if (current) {  // checks for current to be valid before deleting the node
+        prev->next = current->next;
+        delete current;
+        current = nullptr;
+    }
+    output(head);
+}
+void insert(Node* head, int entry){
     
 }
