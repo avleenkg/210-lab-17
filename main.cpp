@@ -13,9 +13,9 @@ struct Node {
 
 void output(Node *);
 void add(Node* &, float v); //pass by reference to change head itself
-void deletenode(Node*, int e);
-void insert(Node*, int e, float v);
-void deletelist(Node*);
+void deletenode(Node* &, int e);
+void insert(Node* &, int e, float v);
+void deletelist(Node* &);
 
 int main() {
     Node *head = nullptr; //means empty list
@@ -23,6 +23,7 @@ int main() {
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
+        add(head, tmp_val);
     }
     output(head);
 
@@ -35,6 +36,7 @@ int main() {
 
     // insert a node
     cout << "After which node to insert 10000? " << endl;
+    output(head);
     cin >> entry;
     insert(head, entry, 10000);
     output(head);
@@ -60,7 +62,7 @@ void output(Node * head) {
     cout << endl;
 }
 
-void add(Node* head, float value) {
+void add(Node* &head, float value) {
         Node *newVal = new Node; //creates new node with pointer newval touching it
         
         // adds node at head
@@ -76,7 +78,7 @@ void add(Node* head, float value) {
         }
 }
 
-void deletenode(Node* head, int entry) {
+void deletenode(Node* &head, int entry) {
     // deleting a node
     Node * current = head; //ptr current points to same thing as head
     Node * prev = nullptr;
@@ -98,7 +100,7 @@ void deletenode(Node* head, int entry) {
         current = nullptr;
     }
 }
-void insert(Node* head, int entry, float value){
+void insert(Node* &head, int entry, float value){
     // insert a node
     Node * current = head;
     Node * prev = nullptr;
@@ -108,8 +110,6 @@ void insert(Node* head, int entry, float value){
         cout << "[" << count++ << "] " << current->value << endl;
         current = current->next;
     }
-    cout << "Choice --> ";
-    cin >> entry;
 
     current = head;
     prev = head;
@@ -127,7 +127,7 @@ void insert(Node* head, int entry, float value){
     prev->next = newnode;
     output(head);
 }
-void deletelist(Node* head){
+void deletelist(Node* &head){
     Node * current = head;
     while (current) {
         head = current->next;
