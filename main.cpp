@@ -12,16 +12,16 @@ struct Node {
 };
 
 void output(Node *);
-void add(Node*, float v);
-void deletenode(Node*, float v);
-void insert(Node*, int e);
+void add(Node* &, float v); //pass by reference to change head itself
+void deletenode(Node*, int e);
+void insert(Node*, int e, float v);
+void deletelist(Node*);
 
 int main() {
     Node *head = nullptr; //means empty list
-    int count = 0;
-
+    
     // create a linked list of size SIZE with random numbers 0-99
-    /*for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
         Node *newVal = new Node; //creates new node with pointer newval touching it
         
@@ -66,7 +66,7 @@ int main() {
     output(head);*/
 
     // insert a node
-    current = head;
+    /*current = head;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
     while (current) {
@@ -90,17 +90,17 @@ int main() {
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
-    output(head);
+    output(head);*/
 
     // deleting the linked list
-    current = head;
+    /*current = head;
     while (current) {
         head = current->next;
         delete current;
         current = head;
     }
     head = nullptr;
-    output(head);
+    output(head);*/
 
     return 0;
 }
@@ -119,7 +119,7 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void output(Node* head, float value) {
+void add(Node* head, float value) {
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
         Node *newVal = new Node; //creates new node with pointer newval touching it
@@ -138,7 +138,7 @@ void output(Node* head, float value) {
     }
     output(head);
 }
-void deletenode(Node* head, float value) {
+void deletenode(Node* head, int entry) {
     // deleting a node
     Node * current = head; //ptr current points to same thing as head
     cout << "Which node to delete? " << endl;
@@ -165,6 +165,41 @@ void deletenode(Node* head, float value) {
     }
     output(head);
 }
-void insert(Node* head, int entry){
-    
+void insert(Node* head, int entry, float value){
+    // insert a node
+    current = head;
+    cout << "After which node to insert 10000? " << endl;
+    count = 1;
+    while (current) {
+        cout << "[" << count++ << "] " << current->value << endl;
+        current = current->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    current = head;
+    prev = head;
+    for (int i = 0; i < (entry); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    //at this point, insert a node between prev and current
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = current;
+    prev->next = newnode;
+    output(head);
+}
+void deletelist(Node*, ){
+    current = head;
+    while (current) {
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
+    output(head);
 }
