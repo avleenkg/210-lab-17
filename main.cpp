@@ -1,3 +1,6 @@
+//Avleen Gill - 210 Lab 17
+//modularize linked list
+
 #include <iostream>
 using namespace std;
 
@@ -11,18 +14,18 @@ struct Node {
 void output(Node *);
 
 int main() {
-    Node *head = nullptr;
+    Node *head = nullptr; //means empty list
     int count = 0;
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
-        Node *newVal = new Node;
+        Node *newVal = new Node; //creates new node with pointer newval touching it
         
         // adds node at head
-        if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
+        if (!head) { // if this is the first node, it's the new head or if head does not hold real data
+            head = newVal; //if list is empty, head will now point at whatever newval is pointing at
+            newVal->next = nullptr; //newval->next is pointing down to nothing, so list ends there
             newVal->value = tmp_val;
         }
         else { // its a second or subsequent node; place at the head
