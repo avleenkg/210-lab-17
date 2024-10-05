@@ -13,6 +13,7 @@ struct Node {
 
 void output(Node *);
 
+
 int main() {
     Node *head = nullptr; //means empty list
     int count = 0;
@@ -26,10 +27,10 @@ int main() {
         if (!head) { // if this is the first node, it's the new head or if head does not hold real data
             head = newVal; //if list is empty, head will now point at whatever newval is pointing at
             newVal->next = nullptr; //newval->next is pointing down to nothing, so list ends there
-            newVal->value = tmp_val;
+            newVal->value = tmp_val; //adding random tmp value into value space in the node
         }
         else { // its a second or subsequent node; place at the head
-            newVal->next = head;
+            newVal->next = head; //newval->next now points to whatever head is pointing at (first node)
             newVal->value = tmp_val;
             head = newVal;
         }
