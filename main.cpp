@@ -12,14 +12,15 @@ struct Node {
 };
 
 void output(Node *);
-
+void add(Node*, float v);
+void deletenode(Node*, float v);
 
 int main() {
     Node *head = nullptr; //means empty list
     int count = 0;
 
     // create a linked list of size SIZE with random numbers 0-99
-    for (int i = 0; i < SIZE; i++) {
+    /*for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
         Node *newVal = new Node; //creates new node with pointer newval touching it
         
@@ -31,11 +32,11 @@ int main() {
         }
         else { // its a second or subsequent node; place at the head
             newVal->next = head; //newval->next now points to whatever head is pointing at (first node)
-            newVal->value = tmp_val;
-            head = newVal;
+            newVal->value = tmp_val;  //adding random tmp value into value space in the node
+            head = newVal; //since newval is pointing to the new node being added, head is pointing to that node now as well
         }
     }
-    output(head);
+    output(head); */
 
     // deleting a node
     Node * current = head;
@@ -115,4 +116,27 @@ void output(Node * hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+void output(Node* head, float value) {
+    for (int i = 0; i < SIZE; i++) {
+        int tmp_val = rand() % 100;
+        Node *newVal = new Node; //creates new node with pointer newval touching it
+        
+        // adds node at head
+        if (!head) { // if this is the first node, it's the new head or if head does not hold real data
+            head = newVal; //if list is empty, head will now point at whatever newval is pointing at
+            newVal->next = nullptr; //newval->next is pointing down to nothing, so list ends there
+            newVal->value = tmp_val; //adding random tmp value into value space in the node
+        }
+        else { // its a second or subsequent node; place at the head
+            newVal->next = head; //newval->next now points to whatever head is pointing at (first node)
+            newVal->value = tmp_val;  //adding random tmp value into value space in the node
+            head = newVal; //since newval is pointing to the new node being added, head is pointing to that node now as well
+        }
+    }
+    output(head);
+}
+void deletenode(Node* head, float value) {
+    
 }
